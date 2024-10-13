@@ -7,7 +7,9 @@ const Logo = () => {
       className="flex gap-3 items-center text-xl font-semibold text-gray-800 dark:text-gray-100"
     >
       <img className="max-w-8" src={logoImg} alt="Logo" />
-      News Feed
+      <p>
+        News<span className="text-teal-600">BUZZ</span>
+      </p>
     </a>
   );
 };
