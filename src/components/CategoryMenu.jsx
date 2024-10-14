@@ -3,9 +3,9 @@ import Select from 'react-select';
 import { AppContext } from '../AppContext';
 
 const options = [
+  { value: 'general', label: 'General' },
   { value: 'business', label: 'Business' },
   { value: 'entertainment', label: 'Entertainment' },
-  { value: 'general', label: 'General' },
   { value: 'health', label: 'Health' },
   { value: 'science', label: 'Science' },
   { value: 'sports', label: 'Sports' },
@@ -15,8 +15,7 @@ const options = [
 const CategoryMenu = () => {
   const { setCategory } = useContext(AppContext);
   const categoryChangeHandler = (selectedOption) => {
-    console.log(selectedOption.value);
-    setCategory(selectedOption.value); // If you want to update the category in context
+    setCategory(selectedOption.value);
   };
 
   return (
