@@ -14,7 +14,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="relative flex-1" onSubmit={(e) => e.preventDefault()}>
+    <form className="relative flex-1">
       <div className="absolute left-8 top-5">
         <svg
           width="18"
