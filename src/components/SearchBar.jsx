@@ -1,20 +1,20 @@
-/* eslint-disable react/prop-types */
-const SearchBar = ({ countryList, setFilteredCountries }) => {
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const searchTerm = e.target.elements.search.value;
-    const filteredCountries =
-      !searchTerm || searchTerm === ''
-        ? countryList
-        : countryList.filter((country) =>
-            country.name.official
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())
-          );
-    setFilteredCountries(filteredCountries);
+import { useContext } from 'react';
+import { AppContext } from '../AppContext';
+
+const SearchBar = () => {
+  const { setQuery, query } = useContext(AppContext);
+
+  const searchHandler = (e) => {
+    if (e.target.value.length > 0) {
+      setQuery(`q=${e.target.value}&`);
+    } else {
+      setQuery('');
+    }
+    console.log(query);
   };
+
   return (
-    <form onSubmit={handleSearch} className="relative flex-1">
+    <form className="relative flex-1" onSubmit={(e) => e.preventDefault()}>
       <div className="absolute left-8 top-5">
         <svg
           width="18"
@@ -39,6 +39,7 @@ const SearchBar = ({ countryList, setFilteredCountries }) => {
         type="text"
         name="search"
         placeholder="Search...."
+        onChange={searchHandler}
       />
     </form>
   );

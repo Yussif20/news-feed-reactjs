@@ -7,7 +7,6 @@ const Gallery = ({ articles }) => {
     <div className="ml-8 grid grid-cols-2 grid-rows-2 items-center justify-around max-w-fit">
       {articles?.map((article, index) => {
         while (index < 4) {
-          console.log(article.title);
           return (
             <GalleryItem
               key={index}
