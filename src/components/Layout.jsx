@@ -53,7 +53,7 @@ const Layout = () => {
         <ErrorMessage message="Data is Loading..." />
       )}
       {error.length > 0 && <ErrorMessage message={error} />}
-
+      {articles.length === 0 && <ErrorMessage message="No articles found!" />}
       <ArticlesList articles={articles} />
       <div className="flex justify-around mx-auto py-8 ">
         <PaginationButton

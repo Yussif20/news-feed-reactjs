@@ -9,7 +9,7 @@ function App() {
     <main className="font-roboto bg-white dark:bg-gray-950">
       <Header />
       <AppContextProvider>
-        <div className="flex items-center justify-center my-12 mx-6">
+        <div className="flex items-center flex-col gap-8 sm:flex-row sm:gap-0 justify-center my-12 mx-6">
           <SearchBar />
           <CategoryMenu />
         </div>
