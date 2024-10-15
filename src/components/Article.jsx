@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 const Article = ({ name, title, description, date, url, img }) => {
   return (
-    <article className="h-full rounded bg-gray-50 p-3 pb-9 shadow-md dark:bg-gray-800 w-[400px] dark:text-gray-50">
+    <article className="flex flex-col justify-between h-full rounded bg-gray-50 p-3 pb-9 shadow-md dark:bg-gray-800 w-[400px] dark:text-gray-50">
       <img className="mb-4 h-40 w-full rounded-md" src={img} alt="urlToImage" />
       <a target="_blank" href={url} className="text-2xl">
         {title}
       </a>
       <p className="my-4">{description}</p>
-      <p>published at: {date}</p>
-      <p className="text-sm text-right">By: {name}</p>
+      <div className="w-full flex justify-between self-end">
+        <p>published at: {date}</p>
+        <p className="text-sm text-right">Source: {name}</p>
+      </div>
     </article>
   );
 };

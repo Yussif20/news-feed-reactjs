@@ -9,7 +9,8 @@ const NEWS_API_KEY = `1b41ec2da1ac4b90a3adca52a593b529`;
 
 const Layout = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [articles, setArticles] = useState();
+  const [error, setError] = useState('');
+  const [articles, setArticles] = useState([]);
   const { country, query, category } = useContext(AppContext);
   const [pageNumber, setPageNumber] = useState(1);
   const PAGE_SIZE = 6;
@@ -29,13 +30,17 @@ const Layout = () => {
     fetch(newsUrl)
       .then((res) => res.json())
       .then((data) => {
+        if (data.status === 'error') {
+          throw new Error(data.message);
+        }
         const result = data.articles;
-        setIsLoading(false);
+        setError('');
         setArticles(result);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
   }, 1000);
 
   useEffect(() => {
@@ -44,7 +49,11 @@ const Layout = () => {
 
   return (
     <div>
-      {isLoading && <ErrorMessage message="Data is Loading..." />}
+      {isLoading && error.length === 0 && (
+        <ErrorMessage message="Data is Loading..." />
+      )}
+      {error.length > 0 && <ErrorMessage message={error} />}
+
       <ArticlesList articles={articles} />
       <div className="flex justify-around mx-auto py-8 ">
         <PaginationButton
